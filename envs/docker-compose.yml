@@ -1,0 +1,16 @@
+version: '2.3'
+
+services:
+  quantile:
+    build:
+      context: .
+      dockerfile: ./dev/Dockerfile
+    container_name: quantile
+    runtime: nvidia
+    ports:
+      - '8880:8888'
+    volumes:
+      - ../../:/home/user/workspace
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0
+    entrypoint: jupyter lab --no-browser --ip=0.0.0.0 --allow-root
